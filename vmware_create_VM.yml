@@ -1,8 +1,8 @@
 - name: Create a virtual machine from a template
   vmware_guest:
-    hostname: "{{ 192.168.2.5 }}"
-    username: "{{ administrator@pslab.local }}"
-    password: "{{ Bezeqint@014 }}"
+    hostname: "{{ 192.168.2.21 }}"
+    username: "{{ root }}"
+    password: "{{ BezeqInt@014 }}"
     validate_certs: no
     folder: [Virtual Machines] /File_SRV
     name: Filer_Srv
