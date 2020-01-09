@@ -1,0 +1,28 @@
+
+- hosts:
+    localhost
+  connection: local
+  become: true
+  tasks:
+  - name: Clone a VM from Template and customize
+    vmware_guest:
+      annotation: This is a test VM deployment from Ansible
+      hostname: "192.168.2.5"
+      username: administrator@pslab.local
+      password: Bezeqint@014
+      validate_certs: no
+      folder: /vm
+      datacenter: "HX-DC"
+#      cluster: ""
+      esxi_hostname: "hxnode02.pslab.local"
+      template: Template_VM_WINSRV_16
+      state:  poweredon
+      name: "TEST02"
+      disk:
+      - size_gb: 80
+        type: thin
+        datastore: ISO
+      hardware:
+        memory_mb: 8096
+        num_cpus: 2
+        scsi: paravirtual
