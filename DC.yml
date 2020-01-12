@@ -1,0 +1,31 @@
+- name: ensure a server is a domain controller
+  win_domain_controller:
+    dns_domain_name: 192.168.2.11
+    domain_admin_user: administrator@pslab.local
+    domain_admin_password: Bezeqint@014
+    safe_mode_password: Bezeqint@014
+    state: domain_controller
+    log_path: c:\ansible_win_domain_controller.txt
+
+# ensure a server is not a domain controller
+# note that without an action wrapper, in the case where a DC is demoted,
+# the task will fail with a 401 Unauthorized, because the domain credential
+# becomes invalid to fetch the final output over WinRM. This requires win_async
+# with credential switching (or other clever credential-switching
+# mechanism to get the output and trigger the required reboot)
+- win_domain_controller:
+    domain_admin_user: administrator@pslab.local
+    domain_admin_password: Bezeqint@014
+    local_admin_password: Bezeqint@014
+    state: member_server
+    log_path: c:\ansible_win_domain_controller.txt
+
+- name: promote server as a read only domain controller
+  win_domain_controller:
+    dns_domain_name: pslab.local
+    domain_admin_user: administrator
+    domain_admin_password: Bezeqint@014
+    safe_mode_password: Bezeqint@014
+    state: domain_controller
+    read_only: no
+    site_name: pslab
