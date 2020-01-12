@@ -2,14 +2,17 @@
 - hosts:
     localhost
   connection: local
-  become: true
+  #become: true
+  vars_files:
+  - daniel.yml
+
   tasks:
   - name: Clone a VM from Template and customize
     vmware_guest:
       annotation: This is a test VM deployment from Ansible
       hostname: "192.168.2.5"
-      username: administrator@pslab.local
-      password: Bezeqint@014
+      username: "{{ user }}"
+      password: "{{ pass }}"
       validate_certs: no
       folder: /vm
       datacenter: "HX-DC"
