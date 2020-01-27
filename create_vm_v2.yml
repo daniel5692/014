@@ -24,7 +24,7 @@
       disk:
       - size_gb: 80
         type: thin
-        datastore: ISO
+        datastore: Virtual Machines
       hardware:
         memory_mb: 8096
         num_cpus: 2
